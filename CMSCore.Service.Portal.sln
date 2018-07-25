@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMSCore.Service.Portal", "CMSCore.Service.Portal\CMSCore.Service.Portal.csproj", "{DEC7E9A5-69A7-4D03-942C-621A746E5DD8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,7 +14,24 @@ Global
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DEC7E9A5-69A7-4D03-942C-621A746E5DD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEC7E9A5-69A7-4D03-942C-621A746E5DD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEC7E9A5-69A7-4D03-942C-621A746E5DD8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DEC7E9A5-69A7-4D03-942C-621A746E5DD8}.Debug|x64.Build.0 = Debug|Any CPU
+		{DEC7E9A5-69A7-4D03-942C-621A746E5DD8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DEC7E9A5-69A7-4D03-942C-621A746E5DD8}.Debug|x86.Build.0 = Debug|Any CPU
+		{DEC7E9A5-69A7-4D03-942C-621A746E5DD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEC7E9A5-69A7-4D03-942C-621A746E5DD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEC7E9A5-69A7-4D03-942C-621A746E5DD8}.Release|x64.ActiveCfg = Release|Any CPU
+		{DEC7E9A5-69A7-4D03-942C-621A746E5DD8}.Release|x64.Build.0 = Release|Any CPU
+		{DEC7E9A5-69A7-4D03-942C-621A746E5DD8}.Release|x86.ActiveCfg = Release|Any CPU
+		{DEC7E9A5-69A7-4D03-942C-621A746E5DD8}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D3D79FC1-FEA8-4BCE-924B-4C4ED7DECA7B}
 	EndGlobalSection
 EndGlobal
