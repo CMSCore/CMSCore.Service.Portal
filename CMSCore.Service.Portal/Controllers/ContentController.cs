@@ -1,12 +1,15 @@
 ﻿namespace CMSCore.Service.Portal.Controllers
 {
+    using System.ComponentModel.DataAnnotations;
     using System.Threading.Tasks;
+    using Library.Core.Attributes;
     using Library.GrainInterfaces;
     using Library.Messages;
+    using Library.Messages.Update;
     using Microsoft.AspNetCore.Mvc;
     using Orleans;
 
-    [Route("api/v1/{controller}")]
+    [Route("api/v1/[controller]")]
     public class ContentController : Controller
     {
         private readonly IClusterClient _client;
@@ -16,8 +19,9 @@
             this._client = client;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Update(UpdateContentViewModel model)
+        [HttpPut]
+        [ValidateModel]
+        public async Task<IActionResult> Update([FromBody]UpdateContentViewModel model)
         {
             var grain = this._client.GetGrain<IManageContentGrain>(model.ContentId);
             var result = await grain.UpdateContent(model);
@@ -25,7 +29,8 @@
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
+        [ValidateModel]
+        public async Task<IActionResult> Delete([Required] string id)
         {
             var grain = this._client.GetGrain<IManageContentGrain>(id);
             var result = await grain.DeleteContent(id);
