@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Library.Authentication;
     using Library.GrainInterfaces;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -24,11 +25,11 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
             services.AddSingleton<IClusterClient>(CreateClusterClient);
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "CMSCore.Service.Portal", Version = "v1" , Description = "Portal service for mananging content in CMSCore"});
-            });
+            services.AddCMSCoreAuthentication(Configuration);
+            services.AddCors(cors => { cors.AddPolicy("client", builder => builder.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod().AllowCredentials().Build()); });
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "CMSCore.Service.Portal", Version = "v1", Description = "Portal service for mananging content in CMSCore" }); });
         }
 
         public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
@@ -39,10 +40,11 @@
             }
 
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CMSCore.Service.Portal");
-            });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "CMSCore.Service.Portal"); });
+
+            app.UseCors("client");
+
+            app.UseCMSCoreAuthentication();
 
             app.UseMvc();
             app.UseDefaultFiles();

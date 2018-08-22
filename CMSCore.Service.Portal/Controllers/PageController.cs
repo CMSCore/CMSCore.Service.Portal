@@ -8,6 +8,7 @@
     using Library.Messages;
     using Library.Messages.Create;
     using Library.Messages.Update;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Orleans;
 
@@ -21,6 +22,7 @@
             this._client = client;
         }
 
+        [Authorize("create:content")]
         [HttpPost]
         [ValidateModel]
         public async Task<IActionResult> Create([FromBody] CreatePageViewModel model)
